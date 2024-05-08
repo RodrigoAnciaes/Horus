@@ -55,24 +55,36 @@ Horus.prototype.getUniqueConnections = function(connections) { // Get unique con
     return uniqueConnections;
     }
 
+    
 Horus.prototype.showConnections = function(connections) { // Show connections
-    var connectionsList = document.createElement('ul');
-    connectionsList.style.position = 'fixed';
-    connectionsList.style.top = '0';
-    connectionsList.style.right = '0';
-    connectionsList.style.backgroundColor = 'black';
-    connectionsList.style.color = 'white';
-    connectionsList.style.padding = '10px';
-    connectionsList.style.listStyle = 'none';
-    connectionsList.style.zIndex = '999999';
+    var popup = document.createElement('div');
+    popup.id = 'horus-popup';
+    popup.style.position = 'fixed';
+    popup.style.top = '0';
+    popup.style.right = '0';
+    popup.style.width = '300px';
+    popup.style.height = '100%';
+    popup.style.backgroundColor = 'white';
+    popup.style.zIndex = '999999';
+    popup.style.overflow = 'scroll';
+    popup.style.padding = '20px';
+    popup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+    popup.style.fontFamily = 'Arial';
+    popup.style.fontSize = '12px';
+    popup.style.color = 'black';
+    popup.style.textAlign = 'left';
+    popup.style.lineHeight = '1.5';
+    popup.style.boxSizing = 'border-box';
+    popup.innerHTML = '<h1>Third Party Connections</h1>';
+    var ul = document.createElement('ul');
     connections.forEach(function(connection) {
-        var listItem = document.createElement('li');
-        listItem.textContent = connection;
-        connectionsList.appendChild(listItem);
+        var li = document.createElement('li');
+        li.innerHTML = connection;
+        ul.appendChild(li);
     });
-    document.body.appendChild(connectionsList);
-    console.log("Third party connections: ");
-    console.log(connections);
+    popup.appendChild(ul);
+    document.body.appendChild(popup);
+
     }
 
 new Horus(); // Initialize Horus
