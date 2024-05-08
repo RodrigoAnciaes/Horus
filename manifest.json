@@ -1,0 +1,29 @@
+{
+    "manifest_version": 2,
+    "name": "Horus",
+    "version": "1.0",
+  
+    "description": "Extensão para identificação de conexões web.",
+  
+    "background": {
+      "scripts": ["horus.js"]
+    },
+    
+      "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+          "48": "icons/border-48.png",
+          "96": "icons/border-96.png"
+        }
+      },
+      "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "activeTab",
+        "storage",
+        "tabs",
+        "cookies",
+        "<all_urls>"
+      ]
+  }
+  
