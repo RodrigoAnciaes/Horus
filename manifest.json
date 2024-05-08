@@ -5,9 +5,12 @@
   
     "description": "Extensão para identificação de conexões web.",
   
-    "background": {
-      "scripts": ["horus.js"]
-    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["horus.js"]
+      }
+    ],
     
       "browser_action": {
         "default_popup": "popup.html",
