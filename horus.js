@@ -30,7 +30,6 @@ Horus.prototype.detectThirdPartyConnections = function() { // Detect third party
     });
     var allConnectionsArray = [].concat.apply([], allConnections);
     var uniqueConnections = this.UniqueFilter(allConnectionsArray);
-    //this.showConnections(uniqueConnections);
     return uniqueConnections;
     }
 
@@ -62,42 +61,10 @@ Horus.prototype.UniqueFilter = function(connections) { // Get unique connections
     }
 
 
-Horus.prototype.showConnections = function(connections) { // Show connections
-    var popup = document.createElement('div');
-    popup.id = 'horus-popup';
-    popup.style.position = 'fixed';
-    popup.style.top = '0';
-    popup.style.right = '0';
-    popup.style.width = '300px';
-    popup.style.height = '100%';
-    popup.style.backgroundColor = 'white';
-    popup.style.zIndex = '999999';
-    popup.style.overflow = 'scroll';
-    popup.style.padding = '20px';
-    popup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-    popup.style.fontFamily = 'Arial';
-    popup.style.fontSize = '12px';
-    popup.style.color = 'black';
-    popup.style.textAlign = 'left';
-    popup.style.lineHeight = '1.5';
-    popup.style.boxSizing = 'border-box';
-    popup.innerHTML = '<h1>Third Party Connections</h1>';
-    var ul = document.createElement('ul');
-    connections.forEach(function(connection) {
-        var li = document.createElement('li');
-        li.innerHTML = connection;
-        ul.appendChild(li);
-    });
-    popup.appendChild(ul);
-    document.body.appendChild(popup);
-
-    }
-
 Horus.prototype.detectCookies = function() { // Detect cookies
     var self = this;
     var cookies = document.cookie.split(';');
     var uniqueCookies = this.getUniqueCookies(cookies);
-    //this.showCookies(uniqueCookies);
     return uniqueCookies;
     }
 
@@ -109,108 +76,19 @@ Horus.prototype.getUniqueCookies = function(cookies) { // Get unique cookies
     return uniqueCookies;
     }
 
-Horus.prototype.showCookies = function(cookies) { // Show cookies
-    var popup = document.createElement('div');
-    popup.id = 'horus-popup';
-    popup.style.position = 'fixed';
-    popup.style.top = '0';
-    popup.style.right = '0';
-    popup.style.width = '300px';
-    popup.style.height = '100%';
-    popup.style.backgroundColor = 'white';
-    popup.style.zIndex = '999999';
-    popup.style.overflow = 'scroll';
-    popup.style.padding = '20px';
-    popup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-    popup.style.fontFamily = 'Arial';
-    popup.style.fontSize = '12px';
-    popup.style.color = 'black';
-    popup.style.textAlign = 'left';
-    popup.style.lineHeight = '1.5';
-    popup.style.boxSizing = 'border-box';
-    popup.innerHTML = '<h1>Cookies</h1>';
-    var ul = document.createElement('ul');
-    cookies.forEach(function(cookie) {
-        var li = document.createElement('li');
-        li.innerHTML = cookie;
-        ul.appendChild(li);
-    });
-    popup.appendChild(ul);
-    document.body.appendChild(popup);
-    }
 
 Horus.prototype.detectLocalStorage = function() { // Detect local storage
     var localStorage = Object.keys(window.localStorage);
-    //this.showLocalStorage(localStorage);
     return localStorage;
     }
 
-Horus.prototype.showLocalStorage = function(localStorage) { // Show local storage
-    var popup = document.createElement('div');
-    popup.id = 'horus-popup';
-    popup.style.position = 'fixed';
-    popup.style.top = '0';
-    popup.style.right = '0';
-    popup.style.width = '300px';
-    popup.style.height = '100%';
-    popup.style.backgroundColor = 'white';
-    popup.style.zIndex = '999999';
-    popup.style.overflow = 'scroll';
-    popup.style.padding = '20px';
-    popup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-    popup.style.fontFamily = 'Arial';
-    popup.style.fontSize = '12px';
-    popup.style.color = 'black';
-    popup.style.textAlign = 'left';
-    popup.style.lineHeight = '1.5';
-    popup.style.boxSizing = 'border-box';
-    popup.innerHTML = '<h1>Local Storage</h1>';
-    var ul = document.createElement('ul');
-    localStorage.forEach(function(item) {
-        var li = document.createElement('li');
-        li.innerHTML = item;
-        ul.appendChild(li);
-    });
-    popup.appendChild(ul);
-    document.body.appendChild(popup);
-    }
 
 
 Horus.prototype.detectSessionStorage = function() { // Detect session storage
     var sessionStorage = Object.keys(window.sessionStorage);
-    //this.showSessionStorage(sessionStorage);
     return sessionStorage;
     }
 
-Horus.prototype.showSessionStorage = function(sessionStorage) { // Show session storage
-    var popup = document.createElement('div');
-    popup.id = 'horus-popup';
-    popup.style.position = 'fixed';
-    popup.style.top = '0';
-    popup.style.right = '0';
-    popup.style.width = '300px';
-    popup.style.height = '100%';
-    popup.style.backgroundColor = 'white';
-    popup.style.zIndex = '999999';
-    popup.style.overflow = 'scroll';
-    popup.style.padding = '20px';
-    popup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-    popup.style.fontFamily = 'Arial';
-    popup.style.fontSize = '12px';
-    popup.style.color = 'black';
-    popup.style.textAlign = 'left';
-    popup.style.lineHeight = '1.5';
-    popup.style.boxSizing = 'border-box';
-    popup.innerHTML = '<h1>Session Storage</h1>';
-    var ul = document.createElement('ul');
-    sessionStorage.forEach(function(item) {
-        var li = document.createElement('li');
-        li.innerHTML = item;
-        ul.appendChild(li);
-    });
-    popup.appendChild(ul);
-    document.body.appendChild(popup);
-    }
 
 Horus.prototype.detectCanvasFingerprint = function() { // Detect canvas fingerprint
     var canvas = document.createElement('canvas');
@@ -229,31 +107,6 @@ Horus.prototype.detectCanvasFingerprint = function() { // Detect canvas fingerpr
     return canvasData;
     }
 
-Horus.prototype.showCanvasFingerprint = function(canvasFingerprint) { // Show canvas fingerprint
-    var popup = document.createElement('div');
-    popup.id = 'horus-popup';
-    popup.style.position = 'fixed';
-    popup.style.top = '0';
-    popup.style.right = '0';
-    popup.style.width = '300px';
-    popup.style.height = '100%';
-    popup.style.backgroundColor = 'white';
-    popup.style.zIndex = '999999';
-    popup.style.overflow = 'scroll';
-    popup.style.padding = '20px';
-    popup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-    popup.style.fontFamily = 'Arial';
-    popup.style.fontSize = '12px';
-    popup.style.color = 'black';
-    popup.style.textAlign = 'left';
-    popup.style.lineHeight = '1.5';
-    popup.style.boxSizing = 'border-box';
-    popup.innerHTML = '<h1>Canvas Fingerprint</h1>';
-    var img = document.createElement('img');
-    img.src = canvasFingerprint;
-    popup.appendChild(img);
-    document.body.appendChild(popup);
-    }
 
 Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage, sessionStorage, canvasFingerprint) { // Show all
     var popup = document.createElement('div');
