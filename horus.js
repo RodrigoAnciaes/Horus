@@ -137,8 +137,9 @@ Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage,
     popup.appendChild(img);
     
     document.body.appendChild(popup);
-    
-    popup.innerHTML += '<h1>Cookies</h1>';
+
+    popup.innerHTML += '<h1>Amount of cookies added by this page: ' + cookies.length + '</h1>';
+    popup.innerHTML += '<h1>Current Page Cookies</h1>';
     var cookiesList = document.createElement('ul');
     cookies.forEach(function(cookie) {
         var li = document.createElement('li');
@@ -166,6 +167,7 @@ Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage,
     popup.appendChild(sessionStorageList);
 
 
+    popup.innerHTML += '<h1>Amount of third party connections: ' + thirdPartyConnections.length + '</h1>';
     popup.innerHTML += '<h1>Third Party Connections</h1>';
     
     var thirdPartyConnectionsList = document.createElement('ul');
