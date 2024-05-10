@@ -30,7 +30,10 @@ Horus.prototype.detectThirdPartyConnections = function() { // Detect third party
     });
     var allConnectionsArray = [].concat.apply([], allConnections);
     var uniqueConnections = this.UniqueFilter(allConnectionsArray);
-    return uniqueConnections;
+    var onlyThirdPartyConnections = uniqueConnections.filter(function(connection) {
+        return connection.indexOf(window.location.hostname) === -1;
+    });
+    return onlyThirdPartyConnections;
     }
 
 Horus.prototype.getConnections = function(element) { // Get connections
@@ -127,15 +130,13 @@ Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage,
     popup.style.textAlign = 'left';
     popup.style.lineHeight = '1.5';
     popup.style.boxSizing = 'border-box';
-    popup.innerHTML = '<h1>Third Party Connections</h1>';
+
+    popup.innerHTML = '<h1>Canvas Fingerprint</h1>';
+    var img = document.createElement('img');
+    img.src = canvasFingerprint;
+    popup.appendChild(img);
     
-    var thirdPartyConnectionsList = document.createElement('ul');
-    thirdPartyConnections.forEach(function(connection) {
-        var li = document.createElement('li');
-        li.innerHTML = connection;
-        thirdPartyConnectionsList.appendChild(li);
-    });
-    popup.appendChild(thirdPartyConnectionsList);
+    document.body.appendChild(popup);
     
     popup.innerHTML += '<h1>Cookies</h1>';
     var cookiesList = document.createElement('ul');
@@ -163,13 +164,17 @@ Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage,
         sessionStorageList.appendChild(li);
     });
     popup.appendChild(sessionStorageList);
+
+
+    popup.innerHTML += '<h1>Third Party Connections</h1>';
     
-    popup.innerHTML += '<h1>Canvas Fingerprint</h1>';
-    var img = document.createElement('img');
-    img.src = canvasFingerprint;
-    popup.appendChild(img);
-    
-    document.body.appendChild(popup);
+    var thirdPartyConnectionsList = document.createElement('ul');
+    thirdPartyConnections.forEach(function(connection) {
+        var li = document.createElement('li');
+        li.innerHTML = connection;
+        thirdPartyConnectionsList.appendChild(li);
+    });
+    popup.appendChild(thirdPartyConnectionsList);
 }
 
 new Horus(); // Initialize Horus
