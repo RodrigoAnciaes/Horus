@@ -159,7 +159,7 @@ Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage,
     
     document.body.appendChild(popup);
 
-    popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 10px; font-weight: bold;">Amount of cookies added by this page: ' + cookies.length + '</h1>';
+    popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 15px; font-weight: bold;">Amount of cookies added by this page: ' + cookies.length + '</h1>';
     popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 20px; font-weight: bold;">Current Page Cookies</h1>';
     var cookiesList = document.createElement('ul');
     cookies.forEach(function(cookie) {
@@ -188,7 +188,7 @@ Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage,
     popup.appendChild(sessionStorageList);
 
 
-    popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 10px; font-weight: bold;">Amount of third party connections: ' + thirdPartyConnections.length + '</h1>';
+    popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 15px; font-weight: bold;">Amount of third party connections: ' + thirdPartyConnections.length + '</h1>';
     popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 20px; font-weight: bold;">Third Party Connections</h1>';
     
     var thirdPartyConnectionsList = document.createElement('ul');
