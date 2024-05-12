@@ -12,14 +12,34 @@ Horus.prototype.init = function() { // Initialize Horus
 Horus.prototype.addEventListeners = function() { // Add event listeners
     var self = this;
     window.addEventListener('load', function() {
-        var thirdPartyConection = self.detectThirdPartyConnections();
-        var cookies = self.detectCookies();
-        var localStorage = self.detectLocalStorage();
-        var sessionStorage = self.detectSessionStorage();
-        var canvasFingerprint = self.detectCanvasFingerprint();
-        self.showAll(thirdPartyConection, cookies, localStorage, sessionStorage, canvasFingerprint);
+        self.Execute();
     });
+    window.addEventListener('keydown', function(event) {
+        // CTRL + SHIFT + l
+        console.log(event.key);
+        if (event.ctrlKey && event.shiftKey && event.key === 'L') {
+            self.toggle();
+        }
+
     }
+    );
+    }
+
+Horus.prototype.Execute = function() { // Execute
+    var thirdPartyConection = this.detectThirdPartyConnections();
+    var cookies = this.detectCookies();
+    var localStorage = this.detectLocalStorage();
+    var sessionStorage = this.detectSessionStorage();
+    var canvasFingerprint = this.detectCanvasFingerprint();
+    console.log('Third party connections:', thirdPartyConection);
+    console.log('Cookies:', cookies);
+    console.log('Local storage:', localStorage);
+    console.log('Session storage:', sessionStorage);
+    console.log('Canvas fingerprint:', canvasFingerprint);
+    this.showAll(thirdPartyConection, cookies, localStorage, sessionStorage, canvasFingerprint);
+    }
+
+    
 
 Horus.prototype.detectThirdPartyConnections = function() { // Detect third party connections
     var self = this;
@@ -131,15 +151,16 @@ Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage,
     popup.style.lineHeight = '1.5';
     popup.style.boxSizing = 'border-box';
 
-    popup.innerHTML = '<h1>Canvas Fingerprint</h1>';
+
+    popup.innerHTML += '<h1 style="font-size: 20px; font-weight: bold; margin-top: 20px;">Canvas Fingerprint</h1>';
     var img = document.createElement('img');
     img.src = canvasFingerprint;
     popup.appendChild(img);
     
     document.body.appendChild(popup);
 
-    popup.innerHTML += '<h1>Amount of cookies added by this page: ' + cookies.length + '</h1>';
-    popup.innerHTML += '<h1>Current Page Cookies</h1>';
+    popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 10px; font-weight: bold;">Amount of cookies added by this page: ' + cookies.length + '</h1>';
+    popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 20px; font-weight: bold;">Current Page Cookies</h1>';
     var cookiesList = document.createElement('ul');
     cookies.forEach(function(cookie) {
         var li = document.createElement('li');
@@ -148,7 +169,7 @@ Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage,
     });
     popup.appendChild(cookiesList);
     
-    popup.innerHTML += '<h1>Local Storage</h1>';
+    popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 20px; font-weight: bold;">Local Storage</h1>';
     var localStorageList = document.createElement('ul');
     localStorage.forEach(function(item) {
         var li = document.createElement('li');
@@ -157,7 +178,7 @@ Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage,
     });
     popup.appendChild(localStorageList);
     
-    popup.innerHTML += '<h1>Session Storage</h1>';
+    popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 20px; font-weight: bold;">Session Storage</h1>';
     var sessionStorageList = document.createElement('ul');
     sessionStorage.forEach(function(item) {
         var li = document.createElement('li');
@@ -167,8 +188,8 @@ Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage,
     popup.appendChild(sessionStorageList);
 
 
-    popup.innerHTML += '<h1>Amount of third party connections: ' + thirdPartyConnections.length + '</h1>';
-    popup.innerHTML += '<h1>Third Party Connections</h1>';
+    popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 10px; font-weight: bold;">Amount of third party connections: ' + thirdPartyConnections.length + '</h1>';
+    popup.innerHTML += '<h1 style="margin-top: 20px; font-size: 20px; font-weight: bold;">Third Party Connections</h1>';
     
     var thirdPartyConnectionsList = document.createElement('ul');
     thirdPartyConnections.forEach(function(connection) {
@@ -178,6 +199,25 @@ Horus.prototype.showAll = function(thirdPartyConnections, cookies, localStorage,
     });
     popup.appendChild(thirdPartyConnectionsList);
 }
+
+
+Horus.prototype.hide = function() { // Hide
+    document.getElementById('horus-popup').style.display = 'none';
+    }
+
+Horus.prototype.show = function() { // Show
+    document.getElementById('horus-popup').style.display = 'block';
+    }
+
+Horus.prototype.toggle = function() { // Toggle
+    var popup = document.getElementById('horus-popup');
+    if (popup.style.display === 'none') {
+        this.show();
+    } else {
+        this.hide();
+    }
+    }
+
 
 new Horus(); // Initialize Horus
 
