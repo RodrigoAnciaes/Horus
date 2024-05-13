@@ -20,4 +20,6 @@ Extensão para navegador firefox que coleta e mostra em um popup informações s
 3. Para fechar o popup, prissione a tecla `CTRL + SHIFT + L`
 4. Para abrir novamente pressione `CTRL + SHIFT + L` novamente
 
+Obs: as informações coletadas também serão exibidas no console do navegador
+
  
